@@ -1,3 +1,4 @@
+using CDN_WebAPI;
 using CDN_WebAPI.Data;
 using CDN_WebAPI.Interfaces;
 using CDN_WebAPI.Repositories;
@@ -9,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
+builder.Services.AddTransient<Seed>();
 // Add dependency injection into the services
 builder.Services.AddScoped<IUserRepository,UserRepository>();
 builder.Services.AddScoped<IHobbyRepository,HobbyRepository>();
@@ -24,6 +25,20 @@ builder.Services.AddDbContext<DataContext>(options =>
 });
 
 var app = builder.Build();
+
+if (args.Length == 1 && args[0].ToLower() == "seeddata")
+    SeedData(app);
+
+void SeedData(IHost app)
+{
+    var scopedFactory = app.Services.GetService<IServiceScopeFactory>();
+
+    using (var scope = scopedFactory.CreateScope())
+    {
+        var service = scope.ServiceProvider.GetService<Seed>();
+        service.SeedDataContext();
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
