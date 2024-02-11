@@ -1,0 +1,6 @@
+@CDN_WebAPI_HostAddress = http://localhost:5264
+
+GET {{CDN_WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
