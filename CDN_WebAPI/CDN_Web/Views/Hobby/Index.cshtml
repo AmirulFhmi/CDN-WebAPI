@@ -1,0 +1,48 @@
+﻿@model CDN_Web.Models.HobbyViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-outline-primary" asp-action="CreateHobby" asp-route-userId="@Model.UserId.ToString()">Add New Hobby</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Hobby
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Hobbies == null)
+        {
+            <tr>
+                <td class="col-12">
+                    No data available
+                </td>
+            </tr>
+        }
+        else
+        {
+            foreach (var hobby in Model.Hobbies)
+            {
+                <tr>
+                    <td class="col-6">
+                        @hobby.Hobby
+                    </td>
+                    <td class="col-6">
+                        @Html.ActionLink("Edit hobby", "UpdateHobby", new { hobbyId = hobby.HobbyId }, new { @class = "btn btn-outline-secondary" }) |
+                        @Html.ActionLink("Delete hobby", "DeleteHobby", new { hobbyId = hobby.HobbyId, userId = hobby.UserId }, new { @class = "btn btn-outline-secondary" })
+                    </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+<p>
+    <a class="btn btn-secondary" asp-action="DeleteAllHobbies" asp-route-userId="@Model.UserId.ToString()">Delete All Hobbies</a>
+</p>

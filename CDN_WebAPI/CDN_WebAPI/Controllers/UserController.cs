@@ -87,7 +87,7 @@ namespace CDN_WebAPI.Controllers
             return Ok("User successfully created");
         }
 
-        [HttpPut("UpdateUser")]
+        [HttpPatch("UpdateUser")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]

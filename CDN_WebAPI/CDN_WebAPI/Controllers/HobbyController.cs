@@ -20,11 +20,25 @@ namespace CDN_WebAPI.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
+        [HttpGet("GetHobbies/{userId}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<HobbyModel>))]
         public IActionResult GetHobbies(int userId)
         {
             var hobbies = _mapper.Map<List<HobbyDto>>(_hobbyRepository.GetHobbies(userId));
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            return Ok(hobbies);
+        }
+
+        [HttpGet("GetHobby/{hobbyId}")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<HobbyModel>))]
+        public IActionResult GetHobby(int hobbyId)
+        {
+            var hobbies = _mapper.Map<HobbyDto>(_hobbyRepository.GetHobby(hobbyId));
 
             if (!ModelState.IsValid)
             {
@@ -60,7 +74,7 @@ namespace CDN_WebAPI.Controllers
             return Ok("Hobby saved successfully!");
         }
 
-        [HttpPut("UpdateHobby")]
+        [HttpPatch("UpdateHobby")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]

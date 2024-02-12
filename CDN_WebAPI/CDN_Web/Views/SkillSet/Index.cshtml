@@ -1,0 +1,48 @@
+﻿@model CDN_Web.Models.SkillSetViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-outline-primary" asp-action="CreateSkillSet" asp-route-userId="@Model.UserId.ToString()">Add New Skillset</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Skillset
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.SkillSets == null)
+        {
+            <tr>
+                <td class="col-12">
+                    No data available
+                </td>
+            </tr>
+        }
+        else
+        {
+            foreach (var skillSet in Model.SkillSets)
+            {
+                <tr>
+                    <td class="col-6">
+                        @skillSet.SkillSet
+                    </td>
+                    <td class="col-6">
+                        @Html.ActionLink("Edit skillset", "UpdateSkillSet", new { skillSetId = skillSet.SkillSetId }, new { @class = "btn btn-outline-secondary" }) |
+                        @Html.ActionLink("Delete skillset", "DeleteSkillSet", new { skillSetId = skillSet.SkillSetId, userId = skillSet.UserId }, new { @class = "btn btn-outline-secondary" })
+                    </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+<p>
+    <a class="btn btn-secondary" asp-action="DeleteAllSkillSets" asp-route-userId="@Model.UserId.ToString()">Delete All Skillsets</a>
+</p>

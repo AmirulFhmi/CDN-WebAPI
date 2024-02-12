@@ -20,11 +20,25 @@ namespace CDN_WebAPI.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
+        [HttpGet("GetSkillSets/{userId}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<SkillSetModel>))]
         public IActionResult GetSkillSets(int userId)
         {
             var skillsets = _mapper.Map<List<SkillSetDto>>(_skillSetRepository.GetSkillSets(userId));
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            return Ok(skillsets);
+        }
+
+        [HttpGet("GetSkillSet/{skillSetId}")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<SkillSetModel>))]
+        public IActionResult GetSkillSet(int skillSetId)
+        {
+            var skillsets = _mapper.Map<SkillSetDto>(_skillSetRepository.GetSkillSet(skillSetId));
 
             if (!ModelState.IsValid)
             {
@@ -60,7 +74,7 @@ namespace CDN_WebAPI.Controllers
             return Ok("Skillset successfully saved!");
         }
 
-        [HttpPut("UpdateSkillSet")]
+        [HttpPatch("UpdateSkillSet")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]

@@ -1,0 +1,61 @@
+﻿@model CDN_Web.Models.UserViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-outline-primary" asp-action="CreateUser">Create New User</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Phone Number
+            </th>
+            <th>
+                Options
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Users == null)
+        {
+            <tr>
+                <td class="col-12">
+                    No data available
+                </td>
+            </tr>
+        }
+        else
+        {
+            foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td class="col-2">
+                        @user.Name
+                    </td>
+                    <td class="col-2">
+                        @user.Email
+                    </td>
+                    <td class="col-2">
+                        @user.PhoneNumber
+                    </td>
+                    <td class="col-6">
+                        @Html.ActionLink("Edit user", "UpdateUser", new { userId = user.UserId }, new { @class = "btn btn-outline-secondary"}) |
+                        @Html.ActionLink("See user hobbies", "Index", "Hobby", new { userId = user.UserId }, new { @class = "btn btn-outline-secondary" }) |
+                        @Html.ActionLink("See user skillsets", "Index", "SkillSet", new { userId = user.UserId }, new { @class = "btn btn-outline-secondary" }) |
+                        @Html.ActionLink("Delete user", "DeleteUser", new { userId = user.UserId }, new { @class = "btn btn-outline-secondary" })
+                    </td>
+                </tr>
+            }
+        }
+        
+    </tbody>
+</table>
