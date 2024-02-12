@@ -51,7 +51,7 @@ namespace CDN_WebAPI.Controllers
             return Ok(user);
         }
 
-        [HttpPost]
+        [HttpPost("CreateUser")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         public IActionResult CreateUser([FromBody] UserDto user)
@@ -87,7 +87,7 @@ namespace CDN_WebAPI.Controllers
             return Ok("User successfully created");
         }
 
-        [HttpPut]
+        [HttpPut("UpdateUser")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
@@ -119,7 +119,7 @@ namespace CDN_WebAPI.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{userId}")]
+        [HttpDelete("DeleteUser/{userId}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]

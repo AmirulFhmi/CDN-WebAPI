@@ -34,7 +34,7 @@ namespace CDN_WebAPI.Controllers
             return Ok(hobbies);
         }
 
-        [HttpPost]
+        [HttpPost("CreateHobby")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         public IActionResult CreateHobby([FromBody] HobbyDto hobby)
@@ -60,7 +60,7 @@ namespace CDN_WebAPI.Controllers
             return Ok("Hobby saved successfully!");
         }
 
-        [HttpPut]
+        [HttpPut("UpdateHobby")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]

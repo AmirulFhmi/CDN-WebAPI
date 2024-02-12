@@ -20,17 +20,23 @@ namespace CDN_WebAPI
                     new()
                     {
                         FirstName = "Alan",
-                        LastName = "Walker"
+                        LastName = "Walker",
+                        Email = "AlanWalker@gmail.com",
+                        PhoneNumber = 123
                     },
                     new()
                     {
                         FirstName = "John",
-                        LastName = "Doe"
+                        LastName = "Doe",
+                        Email = "JohnDoe@gmail.com",
+                        PhoneNumber = 135
                     },
                     new()
                     {
                         FirstName = "Thomas",
-                        LastName = "Hamston"
+                        LastName = "Hamston",
+                        Email = "ThomasHamston@gmail.com",
+                        PhoneNumber = 496
                     }
                 };
 

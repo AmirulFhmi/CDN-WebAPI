@@ -34,7 +34,7 @@ namespace CDN_WebAPI.Controllers
             return Ok(skillsets);
         }
 
-        [HttpPost]
+        [HttpPost("CreateSkillSet")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         public IActionResult CreateSkillSet([FromBody] SkillSetDto skillset)
@@ -60,7 +60,7 @@ namespace CDN_WebAPI.Controllers
             return Ok("Skillset successfully saved!");
         }
 
-        [HttpPut]
+        [HttpPut("UpdateSkillSet")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]

@@ -8,7 +8,8 @@ namespace CDN_WebAPI.Models
         public int UserId { get; set; }
         public required string FirstName { get; set; }
         public required string LastName { get; set; }
-
+        public string? Email { get; set; }
+        public int PhoneNumber { get; set; }
         public List<HobbyModel>? Hobbies { get; set; }
         public List<SkillSetModel>? Skillsets { get; set; }
     }
